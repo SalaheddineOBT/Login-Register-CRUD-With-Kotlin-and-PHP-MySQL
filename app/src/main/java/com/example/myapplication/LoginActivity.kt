@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -18,7 +19,15 @@ class LoginActivity : AppCompatActivity() {
         val googllbtn=findViewById<RelativeLayout>(R.id.btnGoogle);
         val signupbtn=findViewById<TextView>(R.id.txtSignup);
 
+        //Register Button :
         signupbtn.setOnClickListener(){
+            val intent=Intent(this,RegisterActivity::class.java);
+            startActivity(intent);
+        }
+
+        //Login Button :
+
+        btnLogin.setOnClickListener(){
 
         }
 
