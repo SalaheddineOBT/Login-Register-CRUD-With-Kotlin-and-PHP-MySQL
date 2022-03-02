@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:text="Sign In"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="40dp"
         android:textStyle="bold"></TextView>
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Pleas Login To Your Account"
-        android:layout_marginTop="6dp"></TextView>
+        android:layout_marginTop="10dp"></TextView>
 
     <EditText
         android:layout_width="match_parent"
@@ -58,12 +58,12 @@
             ></EditText>
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:id="@+id/showhidepasswordbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:padding="10dp"
-            android:id="@+id/showhidepasswordbtn"
+            android:layout_marginEnd="20dp"
             android:src="@drawable/view"></ImageView>
 
     </RelativeLayout>
@@ -166,6 +166,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:text="Don't have an account ? "/>
 
         <TextView
@@ -174,6 +175,7 @@
             android:id="@+id/txtSignup"
             android:textColor="@color/primary"
             android:textStyle="bold"
+            android:textSize="20dp"
             android:text="Sign Up"></TextView>
 
     </LinearLayout>
