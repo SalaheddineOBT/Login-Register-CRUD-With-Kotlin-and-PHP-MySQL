@@ -8,6 +8,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:padding="25dp"
+    android:background="#74EEEEEE"
     tools:context=".LoginActivity">
 
     <TextView
