@@ -11,16 +11,14 @@
     $db=new Database();
     $con=$db->Connection();
 
-    $data=json_decode(file_get_contents("php://input"));
-
     if($_SERVER["REQUEST_METHOD"]!="POST"):
         $db->Message(0,404,"Page Not Found !");
-    elseif(!isset($data->username) || empty($data->username) || !isset($data->email) || !isset($data->password) || empty($data->email) || empty($data->password) ):
+    elseif(!isset($_POST["username"]) || empty($_POST["username"]) || !isset($$_POST["email"]) || !isset($_POST["password"]) || empty($_POST["email"]) || empty($_POST["password"]) ):
         $db->Message(0,422,"Pleas Fill all The Required Fields !");
     else:
-        $username=$data->username;
-        $email=trim($data->email);
-        $password=trim($data->password);
+        $username=$_POST["username"];
+        $email=trim($_POST["email"]);
+        $password=trim($_POST["password"]);
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)):
             $db->Message(0,422,"Email Format Incorrect !");
         elseif(strlen($password) < 8):
