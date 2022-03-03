@@ -78,6 +78,7 @@
         android:textColor="@color/primary"
         android:textSize="20dp"
         android:id="@+id/forgotbtn"
+        android:textStyle="bold"
         android:layout_marginEnd="20dp"></TextView>
 
     <androidx.appcompat.widget.AppCompatButton
