@@ -13,6 +13,10 @@ import com.example.myapplication.Remote.IMyAPI
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.os.Looper
+
+
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,7 +26,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        mService=Comon.api;
+        //init service
+        mService=Comon.api
 
         val btnLogin=findViewById<AppCompatButton>(R.id.btnLogin);
         val Email=findViewById<EditText>(R.id.EmailInput);
@@ -50,34 +55,34 @@ class LoginActivity : AppCompatActivity() {
 
         //Register Button :
         signupbtn.setOnClickListener(){
-            val intent=Intent(this,RegisterActivity::class.java);
+            val intent=Intent(this@LoginActivity,RegisterActivity::class.java);
             startActivity(intent);
         }
 
         //Login Button :
         btnLogin.setOnClickListener(){
             authentificateUser(Email.text.toString(),Password.text.toString());
-            //Toast.makeText(this@LoginActivity,Password.text.toString(),Toast.LENGTH_SHORT).show();
         }
 
     }
 
     private fun authentificateUser(email:String,password:String){
-        mService.login(email,password)
-            .enqueue(object :Callback<APIresponse>{
 
+        mService.login(email,password)
+            .enqueue(object: Callback<APIresponse>{
                 override fun onResponse(call: Call<APIresponse>, response: Response<APIresponse>) {
-                    if(response!!.body()!!.success == 0){
-                        Toast.makeText(this@LoginActivity,response.body()!!.message,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this@LoginActivity,
+                        response.body()?.success.toString()+"From onResponse : "+response.body()!!.message,Toast.LENGTH_SHORT).show();
+                    /*if(response.body()!!.success == 0){
+                        Toast.makeText(this@LoginActivity,"From onResponse : "+response.body()!!.message,Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(this@LoginActivity,"Login Successed !",Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                 }
 
                 override fun onFailure(call: Call<APIresponse>, t: Throwable) {
-                    Toast.makeText(this@LoginActivity,t!!.message,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this@LoginActivity,"From onFailur : "+t.message,Toast.LENGTH_SHORT).show();
                 }
-
             })
     }
 
