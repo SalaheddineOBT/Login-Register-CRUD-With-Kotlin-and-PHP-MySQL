@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Sign Up"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="90dp"
             android:textColor="@color/black"
             android:textSize="40dp"
             android:textStyle="bold"></TextView>

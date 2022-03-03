@@ -61,7 +61,20 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        //btn Register Actions :
+        btnRegister.setOnClickListener(){
+            if(!emailtxt.text.equals("") && !passwordtxt.text.equals("") && !confirmtxt.text.equals("") && !usernametxt.text.equals("")){
+                if(passwordtxt.text.toString() == confirmtxt.text.toString()){
+                    authentificate(usernametxt.text.toString(),emailtxt.text.toString(),confirmtxt.text.toString())
+                }else{
+                    Toast.makeText(this,"Confirm Password is Incorrect !",Toast.LENGTH_LONG).show()
+                }
+            }
+        }
 
+    }
+
+    private fun authentificate(username: String, email: String, password: String) {
 
     }
 }

@@ -16,8 +16,6 @@ import retrofit2.Response
 import android.os.Looper
 
 
-
-
 class LoginActivity : AppCompatActivity() {
 
     internal lateinit var mService:IMyAPI
