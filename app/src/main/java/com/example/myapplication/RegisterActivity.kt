@@ -6,11 +6,23 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.*
+import com.example.myapplication.Comon.Comon
+import com.example.myapplication.Model.APIresponse
+import com.example.myapplication.Remote.IMyAPI
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
+
+    internal lateinit var mService: IMyAPI
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        //init service
+        mService= Comon.api
 
         val btnRegister=findViewById<Button>(R.id.btnRegister);
         val btnSignin=findViewById<TextView>(R.id.txtSignin);
@@ -63,18 +75,33 @@ class RegisterActivity : AppCompatActivity() {
 
         //btn Register Actions :
         btnRegister.setOnClickListener(){
-            if(!emailtxt.text.equals("") && !passwordtxt.text.equals("") && !confirmtxt.text.equals("") && !usernametxt.text.equals("")){
-                if(passwordtxt.text.toString() == confirmtxt.text.toString()){
-                    authentificate(usernametxt.text.toString(),emailtxt.text.toString(),confirmtxt.text.toString())
-                }else{
-                    Toast.makeText(this,"Confirm Password is Incorrect !",Toast.LENGTH_LONG).show()
-                }
+            if(passwordtxt.text.toString() == confirmtxt.text.toString()){
+                authentificate(usernametxt.text.toString(),emailtxt.text.toString(),confirmtxt.text.toString())
+            }else{
+                Toast.makeText(this,"Confirm Password is Incorrect !",Toast.LENGTH_LONG).show()
             }
         }
 
     }
 
     private fun authentificate(username: String, email: String, password: String) {
+
+        mService.register(username,email,password)
+            .enqueue(object: Callback<APIresponse> {
+                override fun onResponse(call: Call<APIresponse>, response: Response<APIresponse>) {
+                    Toast.makeText(this@RegisterActivity,
+                        response.body()?.success.toString()+"From onResponse : "+response.body()!!.message,Toast.LENGTH_SHORT).show();
+                    /*if(response.body()!!.success == 0){
+                        Toast.makeText(this@LoginActivity,"From onResponse : "+response.body()!!.message,Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(this@LoginActivity,"Login Successed !",Toast.LENGTH_SHORT).show();
+                    }*/
+                }
+
+                override fun onFailure(call: Call<APIresponse>, t: Throwable) {
+                    Toast.makeText(this@RegisterActivity,"From onFailur : "+t.message,Toast.LENGTH_SHORT).show();
+                }
+            })
 
     }
 }
