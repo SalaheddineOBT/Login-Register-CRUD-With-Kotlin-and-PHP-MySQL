@@ -27,9 +27,8 @@
         else:
             try{
                 $stmt=$db->Login($email,$password);
-                if($stmt->rowCount()):
-                    $row=$stmt->fetch(PDO::FETCH_ASSOC);
-                    echo "".$row['UserName'];   
+                if($stmt):
+                    echo "".$stmt;   
                 else:
                     echo 409; //Incorect Email Or Password !
                 endif;

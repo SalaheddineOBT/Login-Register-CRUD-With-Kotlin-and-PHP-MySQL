@@ -12,20 +12,27 @@ import androidx.appcompat.widget.*
 
 class LoginActivity : AppCompatActivity(),IVolley {
 
+    lateinit var btnLogin:Button
+    lateinit var Email:EditText
+    lateinit var Password:EditText
+    lateinit var ShowHide:ImageView
+    lateinit var ForgotPass:TextView
+    lateinit var googllbtn:RelativeLayout
+    lateinit var facebookbtn:RelativeLayout
+    lateinit var signupbtn:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
-        val btnLogin=findViewById<AppCompatButton>(R.id.btnLogin);
-        val Email=findViewById<EditText>(R.id.EmailInput);
-        val Password=findViewById<EditText>(R.id.PasswordInput);
-        val ShowHide=findViewById<ImageView>(R.id.showhidepasswordbtn);
-        //val ForgotPass=findViewById<TextView>(R.id.forgotbtn);
-        //val googllbtn=findViewById<RelativeLayout>(R.id.btnGoogle);
-        //val facebookbtn=findViewById<RelativeLayout>(R.id.btnFacebook);
-        val signupbtn=findViewById<TextView>(R.id.txtSignup);
+        btnLogin=findViewById<AppCompatButton>(R.id.btnLogin);
+        Email=findViewById<EditText>(R.id.EmailInput);
+        Password=findViewById<EditText>(R.id.PasswordInput);
+        ShowHide=findViewById<ImageView>(R.id.showhidepasswordbtn);
+        //ForgotPass=findViewById<TextView>(R.id.forgotbtn);
+        //googllbtn=findViewById<RelativeLayout>(R.id.btnGoogle);
+        //facebookbtn=findViewById<RelativeLayout>(R.id.btnFacebook);
+        signupbtn=findViewById<TextView>(R.id.txtSignup);
 
         var v=false;
 
@@ -55,10 +62,8 @@ class LoginActivity : AppCompatActivity(),IVolley {
             val pass:String=Password.text.toString()
             MyVolleyRequest.getInstance(this@LoginActivity,this@LoginActivity)
                 .postRequest("http://172.16.1.47/API%20PHP/Operations/Login.php","username",email,pass)
-            Email.text.clear()
-            Password.text.clear()
-        }
 
+        }
     }
 
     override fun onResponse(response: String) {
@@ -82,6 +87,8 @@ class LoginActivity : AppCompatActivity(),IVolley {
             val intent=Intent(this@LoginActivity,MainActivity::class.java)
             intent.putExtra("UserName",""+response);
             startActivity(intent)
+            Email.text.clear()
+            Password.text.clear()
         }
     }
 
@@ -89,9 +96,7 @@ class LoginActivity : AppCompatActivity(),IVolley {
         val builder= AlertDialog.Builder(this@LoginActivity)
         builder.setTitle(title)
         builder.setMessage(message)
-        builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int ->
-
-        }).create()
+        builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int -> }).create()
         builder.show()
     }
 }

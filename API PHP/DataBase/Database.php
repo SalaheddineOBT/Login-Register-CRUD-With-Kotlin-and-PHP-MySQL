@@ -30,15 +30,26 @@
 
         public function Login($email,$password)
         {
-            $sql='SELECT UserName FROM users WHERE Email="'.$email.'" AND Password="'.$password.'";';
+            $sql='SELECT * FROM users WHERE Email="'.$email.'"';
             $stmt=$this->con->prepare($sql);
             $stmt->execute();
-            return $stmt;
+            // return $stmt;
+            if($stmt->rowCount()):
+                $row=$stmt->fetch(PDO::FETCH_ASSOC);
+
+                $checkPass=password_verify($password,$row['Password']);
+
+                if($checkPass):
+                    return $row["UserName"];
+                endif;
+            endif;
+
+            return null;
         }
 
         public function Register($username,$email,$password)
         {   
-            $sql='INSERT INTO users (UserName,Email,Password) VALUES("'.$username.'","'.$email.'","'.$password.'");';
+            $sql='INSERT INTO users (UserName,Email,Password) VALUES("'.$username.'","'.$email.'","'.password_hash($password,PASSWORD_DEFAULT).'");';
             $stmt=$this->con->prepare($sql);
             if($stmt->execute()):
                 return true;

@@ -26,6 +26,11 @@ class RegisterActivity : AppCompatActivity(),IVolley {
         val showhideconfirm=findViewById<ImageView>(R.id.showhidepassCbtn);
         val showhidepss=findViewById<ImageView>(R.id.showhidepassbtn);
 
+        usernametxt.text.clear()
+        emailtxt.text.clear()
+        confirmtxt.text.clear()
+        passwordtxt.text.clear()
+
         var v1=false;
         var v2=false;
 
@@ -74,10 +79,6 @@ class RegisterActivity : AppCompatActivity(),IVolley {
             if(password == confirm){
                 MyVolleyRequest.getInstance(this@RegisterActivity,this@RegisterActivity)
                     .postRequest("http://172.16.1.47/API%20PHP/Operations/Register.php",username,email,confirm)
-                usernametxt.text.clear()
-                emailtxt.text.clear()
-                confirmtxt.text.clear()
-                passwordtxt.text.clear()
             }else{
                 Alert("Message Error : ","Confirm Password is Incorrect !");
             }
@@ -98,18 +99,28 @@ class RegisterActivity : AppCompatActivity(),IVolley {
             //Your Password Must Be At Least 8 Characters !
             Alert("Message Error :","Your Password Must Be At Least 8 Characters !")
 
+        }else if(response=="405"){
+            //Your User Name Must Be At Least 3 Characters Long !
+            Alert("Message Error :","Your User Name Must Be At Least 3 Characters Long !");
+
         }else if(response=="409"){
             //Incorect Email Or Password !
             Alert("Message Error :","Incorect Email Or Password !")
 
+        }else if(response=="408"){
+            //This Email Already Exist !
+            Alert("Message Error :","This Email Already Exist !")
+
         }else{
             val builder= AlertDialog.Builder(this@RegisterActivity)
             builder.setTitle("Message Information :")
-            builder.setMessage("")
+            builder.setMessage("You Have SuccessFully Registered .")
             builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int ->
-
+                val intent=Intent(this@RegisterActivity,LoginActivity::class.java)
+                startActivity(intent)
             }).create()
             builder.show()
+
         }
     }
 
