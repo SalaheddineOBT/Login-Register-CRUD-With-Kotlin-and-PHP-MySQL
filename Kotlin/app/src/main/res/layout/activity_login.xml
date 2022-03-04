@@ -59,8 +59,7 @@
                 android:layout_marginEnd="40dp"
                 android:maxLines="1"
                 android:id="@+id/PasswordInput"
-                android:inputType="textPassword"
-                ></EditText>
+                android:inputType="textPassword"></EditText>
 
             <ImageView
                 android:id="@+id/showhidepasswordbtn"

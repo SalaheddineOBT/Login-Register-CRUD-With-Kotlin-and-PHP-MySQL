@@ -8,11 +8,11 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.*
+import androidx.appcompat.widget.AppCompatButton
 
 class LoginActivity : AppCompatActivity(),IVolley {
 
-    lateinit var btnLogin:Button
+    lateinit var btnLogin:AppCompatButton
     lateinit var Email:EditText
     lateinit var Password:EditText
     lateinit var ShowHide:ImageView
@@ -29,9 +29,9 @@ class LoginActivity : AppCompatActivity(),IVolley {
         Email=findViewById<EditText>(R.id.EmailInput);
         Password=findViewById<EditText>(R.id.PasswordInput);
         ShowHide=findViewById<ImageView>(R.id.showhidepasswordbtn);
-        //ForgotPass=findViewById<TextView>(R.id.forgotbtn);
-        //googllbtn=findViewById<RelativeLayout>(R.id.btnGoogle);
-        //facebookbtn=findViewById<RelativeLayout>(R.id.btnFacebook);
+        ForgotPass=findViewById<TextView>(R.id.forgotbtn);
+        googllbtn=findViewById<RelativeLayout>(R.id.btnGoogle);
+        facebookbtn=findViewById<RelativeLayout>(R.id.btnFacebook);
         signupbtn=findViewById<TextView>(R.id.txtSignup);
 
         var v=false;

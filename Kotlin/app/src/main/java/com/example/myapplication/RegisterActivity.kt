@@ -8,23 +8,35 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 
 class RegisterActivity : AppCompatActivity(),IVolley {
+
+    lateinit var btnRegister:AppCompatButton
+    lateinit var btnSignin:TextView
+    lateinit var emailtxt:EditText
+    lateinit var passwordtxt:EditText
+    lateinit var usernametxt:EditText
+    lateinit var confirmtxt:EditText
+    lateinit var btngll:RelativeLayout
+    lateinit var btnfb:RelativeLayout
+    lateinit var showhideconfirm:ImageView
+    lateinit var showhidepss:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val btnRegister=findViewById<Button>(R.id.btnRegister);
-        val btnSignin=findViewById<TextView>(R.id.txtSignin);
-        val emailtxt=findViewById<EditText>(R.id.EmailInp);
-        val passwordtxt=findViewById<EditText>(R.id.PasswordInp);
-        val usernametxt=findViewById<EditText>(R.id.UsernameInput);
-        val confirmtxt=findViewById<EditText>(R.id.ConfirmasswordInput);
-        //val btngll=findViewById<RelativeLayout>(R.id.btnGgll);
-        //val btnfb=findViewById<RelativeLayout>(R.id.btnFb)
-        val showhideconfirm=findViewById<ImageView>(R.id.showhidepassCbtn);
-        val showhidepss=findViewById<ImageView>(R.id.showhidepassbtn);
+        btnRegister=findViewById<AppCompatButton>(R.id.btnRegister);
+        btnSignin=findViewById<TextView>(R.id.txtSignin);
+        emailtxt=findViewById<EditText>(R.id.EmailInp);
+        passwordtxt=findViewById<EditText>(R.id.PasswordInp);
+        usernametxt=findViewById<EditText>(R.id.UsernameInput);
+        confirmtxt=findViewById<EditText>(R.id.ConfirmasswordInput);
+        btngll=findViewById<RelativeLayout>(R.id.btnGgll);
+        btnfb=findViewById<RelativeLayout>(R.id.btnFb)
+        showhideconfirm=findViewById<ImageView>(R.id.showhidepassCbtn);
+        showhidepss=findViewById<ImageView>(R.id.showhidepassbtn);
 
         usernametxt.text.clear()
         emailtxt.text.clear()
@@ -120,6 +132,11 @@ class RegisterActivity : AppCompatActivity(),IVolley {
                 startActivity(intent)
             }).create()
             builder.show()
+
+            emailtxt.text.clear()
+            usernametxt.text.clear()
+            confirmtxt.text.clear()
+            passwordtxt.text.clear()
 
         }
     }
