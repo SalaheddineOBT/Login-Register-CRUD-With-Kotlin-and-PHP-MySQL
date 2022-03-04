@@ -1,0 +1,7 @@
+401 : Invalid Email Format !
+422 : Pleas Fill all The Required Fields !
+403 : Your Password Must Be At Least 8 Characters !
+405 : Your User Name Must Be At Least 3 Characters Long !
+409 : Incorect Email Or Password !
+408: This Email Already Exist !'
+201 : Successfull Register . 

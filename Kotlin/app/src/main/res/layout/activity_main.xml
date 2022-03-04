@@ -28,7 +28,7 @@
         android:text="User Name"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="@color/subtitle"
+        android:textColor="#9E9F0C3E"
         android:textStyle="bold"></TextView>
 
     <androidx.appcompat.widget.AppCompatButton

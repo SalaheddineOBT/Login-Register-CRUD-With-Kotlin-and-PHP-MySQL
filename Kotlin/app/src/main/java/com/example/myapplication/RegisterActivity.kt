@@ -1,27 +1,19 @@
 package com.example.myapplication
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.*
-import com.example.myapplication.Comon.Comon
-import com.example.myapplication.Model.APIResponse
-import com.example.myapplication.Remote.IMyAPI
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.appcompat.app.AlertDialog
 
-class RegisterActivity : AppCompatActivity() {
-
-    internal lateinit var nSerrvice:IMyAPI
+class RegisterActivity : AppCompatActivity(),IVolley {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
-        nSerrvice=Comon.api
 
         val btnRegister=findViewById<Button>(R.id.btnRegister);
         val btnSignin=findViewById<TextView>(R.id.txtSignin);
@@ -75,37 +67,57 @@ class RegisterActivity : AppCompatActivity() {
 
         //btn Register Actions :
         btnRegister.setOnClickListener(){
-
             val username=usernametxt.text.toString();
             val email=emailtxt.text.toString().trim();
             val password=passwordtxt.text.toString().trim()
             val confirm=confirmtxt.text.toString().trim()
-
             if(password == confirm){
-                authentificate(username,email,confirm)
+                MyVolleyRequest.getInstance(this@RegisterActivity,this@RegisterActivity)
+                    .postRequest("http://172.16.1.47/API%20PHP/Operations/Register.php",username,email,confirm)
+                usernametxt.text.clear()
+                emailtxt.text.clear()
+                confirmtxt.text.clear()
+                passwordtxt.text.clear()
             }else{
-                Toast.makeText(this,"Confirm Password is Incorrect !",Toast.LENGTH_LONG).show()
+                Alert("Message Error : ","Confirm Password is Incorrect !");
             }
-
         }
 
     }
 
-    private fun authentificate(username: String, email: String, password: String) {
-        nSerrvice.register(username,email,password)
-            .enqueue(object: Callback<APIResponse>{
-                override fun onResponse(call: Call<APIResponse>, response: Response<APIResponse>) {
-                    if(response!!.body()!!.success == 0){
-                        Toast.makeText(this@RegisterActivity,response!!.body()!!.message,Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(this@RegisterActivity,"Successfull Login !",Toast.LENGTH_SHORT).show()
+    override fun onResponse(response: String) {
+        if(response=="422"){
+            //Pleas Fill all The Required Fields !
+            Alert("Message Error :","Pleas Fill all The Required Fields !")
 
-                    }
-                }
+        }else if(response=="401"){
+            //Invalid Email Format !
+            Alert("Message Error :","Invalid Email Format !")
 
-                override fun onFailure(call: Call<APIResponse>, t: Throwable) {
-                    Toast.makeText(this@RegisterActivity,t!!.message,Toast.LENGTH_SHORT).show()
-                }
-            })
+        }else if(response=="403"){
+            //Your Password Must Be At Least 8 Characters !
+            Alert("Message Error :","Your Password Must Be At Least 8 Characters !")
+
+        }else if(response=="409"){
+            //Incorect Email Or Password !
+            Alert("Message Error :","Incorect Email Or Password !")
+
+        }else{
+            val builder= AlertDialog.Builder(this@RegisterActivity)
+            builder.setTitle("Message Information :")
+            builder.setMessage("")
+            builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int ->
+
+            }).create()
+            builder.show()
+        }
+    }
+
+    fun Alert(title:String,message:String){
+        val builder= AlertDialog.Builder(this@RegisterActivity)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int -> }).create()
+        builder.show()
     }
 }
