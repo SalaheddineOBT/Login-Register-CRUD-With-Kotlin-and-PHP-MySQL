@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
         val ShowHide=findViewById<ImageView>(R.id.showhidepasswordbtn);
         //val ForgotPass=findViewById<TextView>(R.id.forgotbtn);
         //val googllbtn=findViewById<RelativeLayout>(R.id.btnGoogle);
+        //val facebookbtn=findViewById<RelativeLayout>(R.id.btnFacebook);
         val signupbtn=findViewById<TextView>(R.id.txtSignup);
 
         var v=false;
@@ -49,13 +50,15 @@ class LoginActivity : AppCompatActivity() {
         //Login Button :
         btnLogin.setOnClickListener(){
             authentificateUser(Email.text.toString(),Password.text.toString());
+
         }
 
     }
 
     private fun authentificateUser(email:String,password:String){
-
-
+        val intent=Intent(this@LoginActivity,MainActivity::class.java)
+        intent.putExtra("UserName","Salaheddine");
+        startActivity(intent)
     }
 
 }

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Sign Up"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="160dp"
             android:textColor="@color/black"
             android:textSize="40dp"
             android:textStyle="bold"></TextView>
@@ -164,19 +164,19 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/btnGgll"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:id="@+id/btnGgll"
             android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:background="@drawable/roud_back5">
+            android:background="@drawable/roud_back5"
+            android:gravity="center">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/google"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:adjustViewBounds="true"></ImageView>
+                android:adjustViewBounds="true"
+                android:src="@drawable/google"></ImageView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -185,6 +185,34 @@
                 android:layout_marginEnd="30dp"
                 android:gravity="center"
                 android:text="Sign Up With Google ?"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:id="@+id/btnFb"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:background="@drawable/roud_back5">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/facebook"
+                android:layout_centerVertical="true"
+                android:adjustViewBounds="true"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:layout_marginEnd="30dp"
+                android:text="Sign In With Facebook ?"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold"></TextView>

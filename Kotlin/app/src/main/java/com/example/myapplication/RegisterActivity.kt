@@ -6,12 +6,22 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.*
+import com.example.myapplication.Comon.Comon
+import com.example.myapplication.Model.APIResponse
+import com.example.myapplication.Remote.IMyAPI
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
+
+    internal lateinit var nSerrvice:IMyAPI
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        nSerrvice=Comon.api
 
         val btnRegister=findViewById<Button>(R.id.btnRegister);
         val btnSignin=findViewById<TextView>(R.id.txtSignin);
@@ -20,6 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         val usernametxt=findViewById<EditText>(R.id.UsernameInput);
         val confirmtxt=findViewById<EditText>(R.id.ConfirmasswordInput);
         //val btngll=findViewById<RelativeLayout>(R.id.btnGgll);
+        //val btnfb=findViewById<RelativeLayout>(R.id.btnFb)
         val showhideconfirm=findViewById<ImageView>(R.id.showhidepassCbtn);
         val showhidepss=findViewById<ImageView>(R.id.showhidepassbtn);
 
@@ -64,16 +75,37 @@ class RegisterActivity : AppCompatActivity() {
 
         //btn Register Actions :
         btnRegister.setOnClickListener(){
-            if(passwordtxt.text.toString() == confirmtxt.text.toString()){
-                authentificate(usernametxt.text.toString(),emailtxt.text.toString(),confirmtxt.text.toString())
+
+            val username=usernametxt.text.toString();
+            val email=emailtxt.text.toString().trim();
+            val password=passwordtxt.text.toString().trim()
+            val confirm=confirmtxt.text.toString().trim()
+
+            if(password == confirm){
+                authentificate(username,email,confirm)
             }else{
                 Toast.makeText(this,"Confirm Password is Incorrect !",Toast.LENGTH_LONG).show()
             }
+
         }
 
     }
 
     private fun authentificate(username: String, email: String, password: String) {
+        nSerrvice.register(username,email,password)
+            .enqueue(object: Callback<APIResponse>{
+                override fun onResponse(call: Call<APIResponse>, response: Response<APIResponse>) {
+                    if(response!!.body()!!.success == 0){
+                        Toast.makeText(this@RegisterActivity,response!!.body()!!.message,Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(this@RegisterActivity,"Successfull Login !",Toast.LENGTH_SHORT).show()
 
+                    }
+                }
+
+                override fun onFailure(call: Call<APIResponse>, t: Throwable) {
+                    Toast.makeText(this@RegisterActivity,t!!.message,Toast.LENGTH_SHORT).show()
+                }
+            })
     }
 }
