@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.text.method.*
 import android.widget.*
 import androidx.appcompat.widget.*
+import org.json.JSONObject
+import com.android.volley.*
+import com.android.volley.toolbox.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -66,12 +69,46 @@ class RegisterActivity : AppCompatActivity() {
             val password=passwordtxt.text.toString().trim()
             val confirm=confirmtxt.text.toString().trim()
             if(password == confirm){
-                emailtxt.text.clear()
-                usernametxt.text.clear()
-                confirmtxt.text.clear()
-                passwordtxt.text.clear()
+
+                val url:String="http://10.0.2.2/API%20PHP/Operations/Register.php"
+
+                val params=HashMap<String,String>()
+                params["username"]=username
+                params["email"]=email
+                params["password"]=confirm
+                val jO=JSONObject(params as Map<*, *>)
+
+                val rq:RequestQueue=Volley.newRequestQueue(this@RegisterActivity)
+
+                val jor=JsonObjectRequest(Request.Method.POST,url,jO,Response.Listener { res->
+                    try {
+                        if(res.getString("success").equals("1")){
+                            val builder= AlertDialog.Builder(this@RegisterActivity)
+                            builder.setTitle("Message d'Information :")
+                            builder.setMessage("SuccessFull Register .")
+                            builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int ->
+                                startActivity(Intent(this@RegisterActivity,LoginActivity::class.java))
+                            }).create()
+                            builder.show()
+
+                            emailtxt.text.clear()
+                            usernametxt.text.clear()
+                            confirmtxt.text.clear()
+                            passwordtxt.text.clear()
+
+                        } else { alert("Message d'Erreur !",res.getString("message")) }
+
+                    }catch (e:Exception){
+                        alert("Message d'Erreur !",""+e.message)
+                    }
+                },Response.ErrorListener { err->
+                    alert("Message d'Erreur !",""+err.message)
+                })
+
+                rq.add(jor)
+
             }else{
-                alert("Message Error : ","Confirm Password is Incorrect !")
+                alert("Message d'Erreur !","Confirm Password is Incorrect !")
             }
         }
     }

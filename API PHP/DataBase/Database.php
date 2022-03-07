@@ -1,11 +1,9 @@
 <?php
-
     require_once(__DIR__.'/../vendor/autoload.php');
     $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
     $dotenv->load();
-    
-    class Database{
 
+    class Database{
         private $con;
         public function Connection(){
             $this->con =null;
@@ -33,7 +31,6 @@
             $sql='SELECT * FROM users WHERE Email="'.$email.'"';
             $stmt=$this->con->prepare($sql);
             $stmt->execute();
-            // return $stmt;
             if($stmt->rowCount()):
                 $row=$stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -68,7 +65,5 @@
             endif;
             return false;
         }
-
     }
-
 ?>

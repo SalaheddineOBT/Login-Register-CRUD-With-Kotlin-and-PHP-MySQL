@@ -11,7 +11,7 @@ import com.android.volley.toolbox.*
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity(){
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity(){
             val email:String =emailinput.text.toString()
             val pass:String=passwordinput.text.toString()
 
-            val url:String="http://10.0.2.2/API V2/Operations/Login.php"
+            val url:String="http://10.0.2.2/API%20PHP/Operations/Login.php"
 
             val params=HashMap<String,String>()
             params["email"]=email

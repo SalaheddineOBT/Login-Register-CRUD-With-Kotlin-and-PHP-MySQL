@@ -15,27 +15,34 @@
 
     if($_SERVER["REQUEST_METHOD"]!="POST"):
         $db->Message(0,404,"Page Not Found !");
-    elseif(!isset($_POST["username"]) || !isset($_POST["email"]) || !isset($_POST["password"]) || empty($_POST["username"]) || empty($_POST["email"]) || empty($_POST["password"]) ):
-        echo 422; //Pleas Fill all The Required Fields !
+    elseif( !isset($data->username) 
+            || !isset($data->email) 
+            || !isset($data->password)
+            || empty(trim($data->username))
+            || empty(trim($data->email))
+            || empty(trim($data->password))
+        ):
+        $db->Message(0,422,"Pleas Fill all The Required Fields !");
     else:
-        $username=$_POST["username"];
-        $email=trim($_POST["email"]);
-        $password=trim($_POST["password"]);
+        $username=$data->username;
+        $email=trim($data->email);
+        $password=trim($data->password);
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)):
-            echo 401; //Invalid Email Format !
+            $db->Message(0,422,"Invalid Email Format !");
         elseif(strlen($password) < 8):
-            echo 403; //Your Password Must Be At Least 8 Characters !
+            $db->Message(0,422,"Your Password Must Be At Least 8 Characters !");
         elseif(strlen($username) < 3):
-            echo 405;//Your User Name Must Be At Least 3 Characters Long !
+            $db->Message(0,422,"Your User Name Must Be At Least 3 Characters !");
         else:
             try{
                 if($db->SelectedByEmail($email)):
-                    echo 408; //This Email Already Exist !
+                    $db->Message(0,422,"This Email Already Exist !");
                 elseif($db->Register($username,$email,$password)):
-                    echo 201; //Successfull Register .
+                    $db->Message(1,201,"Successfull Register .");
                 endif;
             }catch(PDOEception $e){
                 echo $e->getMessage(); 
+                $db->Message(0,401,"".$e->getMessage());
             }
         endif;
     endif;
