@@ -1,28 +1,25 @@
 package com.example.myapplication
 
-import android.content.DialogInterface
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.*
 import android.os.Bundle
-import android.text.method.HideReturnsTransformationMethod
-import android.text.method.PasswordTransformationMethod
+import android.text.method.*
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.app.*
+import androidx.appcompat.widget.*
+import com.android.volley.*
+import com.android.volley.toolbox.*
+import org.json.JSONObject
 
-class LoginActivity : AppCompatActivity(),IVolley {
-
-    lateinit var email:EditText
-    lateinit var password:EditText
-
+class LoginActivity : AppCompatActivity(){
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         val btnLogin:AppCompatButton=findViewById(R.id.btnLogin)
-        email=findViewById(R.id.EmailInput)
-        password=findViewById(R.id.PasswordInput)
-        val showHide=findViewById<ImageView>(R.id.showhidepasswordbtn)
+        val emailinput:EditText=findViewById(R.id.EmailInput)
+        val passwordinput:EditText=findViewById(R.id.PasswordInput)
+        val showHide:ImageView=findViewById(R.id.showhidepasswordbtn)
         val forgotPass:TextView=findViewById(R.id.forgotbtn)
         val googllbtn:RelativeLayout=findViewById(R.id.btnGoogle)
         val facebookbtn:RelativeLayout=findViewById(R.id.btnFacebook)
@@ -32,49 +29,56 @@ class LoginActivity : AppCompatActivity(),IVolley {
 
         //Show & Hide Password :
         showHide.setOnClickListener(){
-            if(v!=true){
+            if(v != true){
                 v=true
                 showHide.setBackgroundResource(R.drawable.hide)
-                password.transformationMethod=HideReturnsTransformationMethod.getInstance()
+                passwordinput.transformationMethod=HideReturnsTransformationMethod.getInstance()
             }else
             {
                 v=false
                 showHide.setBackgroundResource(R.drawable.view)
-                password.transformationMethod=PasswordTransformationMethod.getInstance()
+                passwordinput.transformationMethod=PasswordTransformationMethod.getInstance()
             }
         }
 
         //Register Button :
-        signupbtn.setOnClickListener(){
+        signupbtn.setOnClickListener{
             val intent=Intent(this@LoginActivity,RegisterActivity::class.java)
             startActivity(intent)
         }
 
         //Login Button :
-        btnLogin.setOnClickListener(){
-            val email:String =email.text.toString()
-            val pass:String=password.text.toString()
+        btnLogin.setOnClickListener{
+            val email:String =emailinput.text.toString()
+            val pass:String=passwordinput.text.toString()
 
-            MyVolleyRequest.getInstance(this@LoginActivity,this@LoginActivity)
-                .Login("http://10.0.2.2/API%20PHP/Operations/Login.php",email,pass)
+            val url:String="http://10.0.2.2/API V2/Operations/Login.php"
 
-        }
-    }
+            val params=HashMap<String,String>()
+            params["email"]=email
+            params["password"]=pass
+            val jO=JSONObject(params as Map<*, *>)
 
-    override fun onResponse(response: String) {
-        when(response) {
-            "422" -> alert("Message Error :", "Pleas Fill all The Required Fields !")
-            "401" -> alert("Message Error :", "Invalid Email Format !")
-            "403" -> alert("Message Error :", "Your Password Must Be At Least 8 Characters !")
-            "409" -> alert("Message Error :", "Incorrect Email Or Password !")
-            else -> {
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                intent.putExtra("UserName", "" + response)
-                startActivity(intent)
+            val rq:RequestQueue=Volley.newRequestQueue(this@LoginActivity)
 
-                email.text.clear()
-                password.text.clear()
-            }
+            val jor=JsonObjectRequest(Request.Method.POST,url,jO,Response.Listener { res->
+                try {
+                    if(res.getString("success").equals("1")){
+                        val intent=Intent(this@LoginActivity,MainActivity::class.java)
+                        intent.putExtra("UserName",res.getString("user"))
+                        startActivity(intent)
+                        emailinput.text.clear()
+                        passwordinput.text.clear()
+                    } else { alert("Message d'Erreur !",res.getString("message")) }
+
+                }catch (e:Exception){
+                    alert("Message d'Erreur !",""+e.message)
+                }
+            },Response.ErrorListener { err->
+                alert("Message d'Erreur !",""+err.message)
+            })
+
+            rq.add(jor)
         }
     }
 
