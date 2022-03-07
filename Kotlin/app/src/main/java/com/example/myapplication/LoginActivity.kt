@@ -12,87 +12,73 @@ import androidx.appcompat.widget.AppCompatButton
 
 class LoginActivity : AppCompatActivity(),IVolley {
 
-    lateinit var btnLogin:AppCompatButton
-    lateinit var Email:EditText
-    lateinit var Password:EditText
-    lateinit var ShowHide:ImageView
-    lateinit var ForgotPass:TextView
-    lateinit var googllbtn:RelativeLayout
-    lateinit var facebookbtn:RelativeLayout
-    lateinit var signupbtn:TextView
+    lateinit var email:EditText
+    lateinit var password:EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        btnLogin=findViewById<AppCompatButton>(R.id.btnLogin);
-        Email=findViewById<EditText>(R.id.EmailInput);
-        Password=findViewById<EditText>(R.id.PasswordInput);
-        ShowHide=findViewById<ImageView>(R.id.showhidepasswordbtn);
-        ForgotPass=findViewById<TextView>(R.id.forgotbtn);
-        googllbtn=findViewById<RelativeLayout>(R.id.btnGoogle);
-        facebookbtn=findViewById<RelativeLayout>(R.id.btnFacebook);
-        signupbtn=findViewById<TextView>(R.id.txtSignup);
+        val btnLogin:AppCompatButton=findViewById(R.id.btnLogin)
+        email=findViewById(R.id.EmailInput)
+        password=findViewById(R.id.PasswordInput)
+        val showHide=findViewById<ImageView>(R.id.showhidepasswordbtn)
+        val forgotPass:TextView=findViewById(R.id.forgotbtn)
+        val googllbtn:RelativeLayout=findViewById(R.id.btnGoogle)
+        val facebookbtn:RelativeLayout=findViewById(R.id.btnFacebook)
+        val signupbtn:TextView=findViewById(R.id.txtSignup)
 
-        var v=false;
+        var v=false
 
         //Show & Hide Password :
-        ShowHide.setOnClickListener(){
+        showHide.setOnClickListener(){
             if(v!=true){
-                v=true;
-                ShowHide.setBackgroundResource(R.drawable.hide);
-                Password.transformationMethod=HideReturnsTransformationMethod.getInstance();
+                v=true
+                showHide.setBackgroundResource(R.drawable.hide)
+                password.transformationMethod=HideReturnsTransformationMethod.getInstance()
             }else
             {
-                v=false;
-                ShowHide.setBackgroundResource(R.drawable.view);
-                Password.transformationMethod=PasswordTransformationMethod.getInstance();
+                v=false
+                showHide.setBackgroundResource(R.drawable.view)
+                password.transformationMethod=PasswordTransformationMethod.getInstance()
             }
         }
 
         //Register Button :
         signupbtn.setOnClickListener(){
-            val intent=Intent(this@LoginActivity,RegisterActivity::class.java);
-            startActivity(intent);
+            val intent=Intent(this@LoginActivity,RegisterActivity::class.java)
+            startActivity(intent)
         }
 
         //Login Button :
         btnLogin.setOnClickListener(){
-            val email:String =Email.text.toString()
-            val pass:String=Password.text.toString()
+            val email:String =email.text.toString()
+            val pass:String=password.text.toString()
+
             MyVolleyRequest.getInstance(this@LoginActivity,this@LoginActivity)
-                .postRequest("http://172.16.1.47/API%20PHP/Operations/Login.php","username",email,pass)
+                .Login("http://10.0.2.2/API%20PHP/Operations/Login.php",email,pass)
 
         }
     }
 
     override fun onResponse(response: String) {
-        if(response=="422"){
-            //Pleas Fill all The Required Fields !
-            Alert("Message Error :","Pleas Fill all The Required Fields !")
+        when(response) {
+            "422" -> alert("Message Error :", "Pleas Fill all The Required Fields !")
+            "401" -> alert("Message Error :", "Invalid Email Format !")
+            "403" -> alert("Message Error :", "Your Password Must Be At Least 8 Characters !")
+            "409" -> alert("Message Error :", "Incorrect Email Or Password !")
+            else -> {
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.putExtra("UserName", "" + response)
+                startActivity(intent)
 
-        }else if(response=="401"){
-             //Invalid Email Format !
-            Alert("Message Error :","Invalid Email Format !")
-
-        }else if(response=="403"){
-            //Your Password Must Be At Least 8 Characters !
-            Alert("Message Error :","Your Password Must Be At Least 8 Characters !")
-
-        }else if(response=="409"){
-            //Incorect Email Or Password !
-            Alert("Message Error :","Incorect Email Or Password !")
-
-        }else{
-            val intent=Intent(this@LoginActivity,MainActivity::class.java)
-            intent.putExtra("UserName",""+response);
-            startActivity(intent)
-            Email.text.clear()
-            Password.text.clear()
+                email.text.clear()
+                password.text.clear()
+            }
         }
     }
 
-    fun Alert(title:String,message:String){
+    private fun alert(title:String,message:String){
         val builder= AlertDialog.Builder(this@LoginActivity)
         builder.setTitle(title)
         builder.setMessage(message)

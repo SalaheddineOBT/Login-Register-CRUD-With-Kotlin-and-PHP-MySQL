@@ -7,14 +7,15 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.ImageLoader
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 
 class MyVolleyRequest {
+
     private var mRequestQuerue:RequestQueue?=null
     private var contex:Context?=null
     private var iVolley:IVolley?=null
+
     var imageLoader:ImageLoader?=null
         get
 
@@ -75,7 +76,7 @@ class MyVolleyRequest {
     }
 
     //Post Methode :
-    fun postRequest(url:String,username:String,email:String,password:String){
+    fun Register(url:String,username:String,email:String,password:String){
         val postRequest=object:StringRequest(Request.Method.POST,url,
             Response.Listener { res->
                 iVolley!!.onResponse(res.toString())
@@ -84,7 +85,25 @@ class MyVolleyRequest {
             //CTRL + O
             override fun getParams(): MutableMap<String, String> {
                 val params=HashMap<String,String>()
-                params["username"]="username"
+                params["username"]=username
+                params["email"]=email
+                params["password"]=password
+
+                return params
+            }
+        }
+        addToRequestQueue(postRequest)
+    }
+
+    fun Login(url:String,email:String,password:String){
+        val postRequest=object:StringRequest(Request.Method.POST,url,
+            Response.Listener { res->
+                iVolley!!.onResponse(res.toString())
+            }, Response.ErrorListener { e-> iVolley!!.onResponse(e.message!!) })
+        {
+            //CTRL + O
+            override fun getParams(): MutableMap<String, String> {
+                val params=HashMap<String,String>()
                 params["email"]=email
                 params["password"]=password
 

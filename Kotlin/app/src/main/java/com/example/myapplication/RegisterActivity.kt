@@ -12,136 +12,114 @@ import androidx.appcompat.widget.AppCompatButton
 
 class RegisterActivity : AppCompatActivity(),IVolley {
 
-    lateinit var btnRegister:AppCompatButton
-    lateinit var btnSignin:TextView
-    lateinit var emailtxt:EditText
-    lateinit var passwordtxt:EditText
-    lateinit var usernametxt:EditText
-    lateinit var confirmtxt:EditText
-    lateinit var btngll:RelativeLayout
-    lateinit var btnfb:RelativeLayout
-    lateinit var showhideconfirm:ImageView
-    lateinit var showhidepss:ImageView
+    private lateinit var emailtxt:EditText
+    private lateinit var passwordtxt:EditText
+    private lateinit var usernametxt:EditText
+    private lateinit var confirmtxt:EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        btnRegister=findViewById<AppCompatButton>(R.id.btnRegister);
-        btnSignin=findViewById<TextView>(R.id.txtSignin);
-        emailtxt=findViewById<EditText>(R.id.EmailInp);
-        passwordtxt=findViewById<EditText>(R.id.PasswordInp);
-        usernametxt=findViewById<EditText>(R.id.UsernameInput);
-        confirmtxt=findViewById<EditText>(R.id.ConfirmasswordInput);
-        btngll=findViewById<RelativeLayout>(R.id.btnGgll);
-        btnfb=findViewById<RelativeLayout>(R.id.btnFb)
-        showhideconfirm=findViewById<ImageView>(R.id.showhidepassCbtn);
-        showhidepss=findViewById<ImageView>(R.id.showhidepassbtn);
+        val btnRegister:AppCompatButton=findViewById(R.id.btnRegister)
+        val btnSignin=findViewById<TextView>(R.id.txtSignin)
+        emailtxt=findViewById(R.id.EmailInp)
+        passwordtxt=findViewById(R.id.PasswordInp)
+        usernametxt=findViewById(R.id.UsernameInput)
+        confirmtxt=findViewById(R.id.ConfirmasswordInput)
+        val btngll:RelativeLayout=findViewById(R.id.btnGgll)
+        val btnfb:RelativeLayout=findViewById(R.id.btnFb)
+        val showhideconfirm:ImageView=findViewById(R.id.showhidepassCbtn)
+        val showhidepss:ImageView=findViewById(R.id.showhidepassbtn)
 
-        usernametxt.text.clear()
-        emailtxt.text.clear()
-        confirmtxt.text.clear()
-        passwordtxt.text.clear()
-
-        var v1=false;
-        var v2=false;
+        var v1=false
+        var v2=false
 
         //btn to Login Page :
         btnSignin.setOnClickListener(){
-            val intent=Intent(this@RegisterActivity,LoginActivity::class.java);
-            startActivity(intent);
+            val intent=Intent(this@RegisterActivity,LoginActivity::class.java)
+            startActivity(intent)
         }
 
         //Toogle txt Type of confirm :
         showhideconfirm.setOnClickListener(){
-            if(v1!=true){
-                v1=true;
-                showhideconfirm.setBackgroundResource(R.drawable.hide);
-                confirmtxt.transformationMethod= HideReturnsTransformationMethod.getInstance();
+            if(v1 != true){
+                v1=true
+                showhideconfirm.setBackgroundResource(R.drawable.hide)
+                confirmtxt.transformationMethod= HideReturnsTransformationMethod.getInstance()
             }
             else
             {
-                v1=false;
-                showhideconfirm.setBackgroundResource(R.drawable.view);
-                confirmtxt.transformationMethod= PasswordTransformationMethod.getInstance();
+                v1=false
+                showhideconfirm.setBackgroundResource(R.drawable.view)
+                confirmtxt.transformationMethod= PasswordTransformationMethod.getInstance()
             }
         }
 
         //toogle txt password type :
         showhidepss.setOnClickListener(){
-            if(v2!=true){
-                v2=true;
-                showhidepss.setBackgroundResource(R.drawable.hide);
-                passwordtxt.transformationMethod= HideReturnsTransformationMethod.getInstance();
+            if(v2 != true){
+                v2=true
+                showhidepss.setBackgroundResource(R.drawable.hide)
+                passwordtxt.transformationMethod= HideReturnsTransformationMethod.getInstance()
             }
             else
             {
-                v2=false;
-                showhidepss.setBackgroundResource(R.drawable.view);
-                passwordtxt.transformationMethod= PasswordTransformationMethod.getInstance();
+                v2=false
+                showhidepss.setBackgroundResource(R.drawable.view)
+                passwordtxt.transformationMethod= PasswordTransformationMethod.getInstance()
             }
         }
 
         //btn Register Actions :
         btnRegister.setOnClickListener(){
-            val username=usernametxt.text.toString();
-            val email=emailtxt.text.toString().trim();
+
+            val username=usernametxt.text.toString()
+            val email=emailtxt.text.toString().trim()
             val password=passwordtxt.text.toString().trim()
             val confirm=confirmtxt.text.toString().trim()
+
             if(password == confirm){
+
                 MyVolleyRequest.getInstance(this@RegisterActivity,this@RegisterActivity)
-                    .postRequest("http://172.16.1.47/API%20PHP/Operations/Register.php",username,email,confirm)
+                    .Register("http://10.0.2.2/API%20PHP/Operations/Register.php",username,email,confirm)
+
             }else{
-                Alert("Message Error : ","Confirm Password is Incorrect !");
+                alert("Message Error : ","Confirm Password is Incorrect !")
             }
+
         }
 
     }
 
     override fun onResponse(response: String) {
-        if(response=="422"){
-            //Pleas Fill all The Required Fields !
-            Alert("Message Error :","Pleas Fill all The Required Fields !")
 
-        }else if(response=="401"){
-            //Invalid Email Format !
-            Alert("Message Error :","Invalid Email Format !")
+        when(response) {
 
-        }else if(response=="403"){
-            //Your Password Must Be At Least 8 Characters !
-            Alert("Message Error :","Your Password Must Be At Least 8 Characters !")
+            "422" -> alert("Message Error :", "Pleas Fill all The Required Fields !")
+            "401" -> alert("Message Error :", "Invalid Email Format !")
+            "403" -> alert("Message Error :", "Your Password Must Be At Least 8 Characters !")
+            "405" -> alert("Message Error :", "Your User Name Must Be At Least 3 Characters Long !")
+            "409" -> alert("Message Error :", "Incorect Email Or Password !")
+            "408" -> alert("Message Error :", "This Email Already Exist !")
+            else -> {
+                val builder = AlertDialog.Builder(this@RegisterActivity)
+                builder.setTitle("Message Information :")
+                builder.setMessage("You Have SuccessFully Registered .")
+                builder.setPositiveButton("Ok", { dialogInterface: DialogInterface, i: Int ->
+                    finish()
+                }).create()
+                builder.show()
 
-        }else if(response=="405"){
-            //Your User Name Must Be At Least 3 Characters Long !
-            Alert("Message Error :","Your User Name Must Be At Least 3 Characters Long !");
-
-        }else if(response=="409"){
-            //Incorect Email Or Password !
-            Alert("Message Error :","Incorect Email Or Password !")
-
-        }else if(response=="408"){
-            //This Email Already Exist !
-            Alert("Message Error :","This Email Already Exist !")
-
-        }else{
-            val builder= AlertDialog.Builder(this@RegisterActivity)
-            builder.setTitle("Message Information :")
-            builder.setMessage("You Have SuccessFully Registered .")
-            builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int ->
-                val intent=Intent(this@RegisterActivity,LoginActivity::class.java)
-                startActivity(intent)
-            }).create()
-            builder.show()
-
-            emailtxt.text.clear()
-            usernametxt.text.clear()
-            confirmtxt.text.clear()
-            passwordtxt.text.clear()
-
+                emailtxt.text.clear()
+                usernametxt.text.clear()
+                confirmtxt.text.clear()
+                passwordtxt.text.clear()
+            }
         }
     }
 
-    fun Alert(title:String,message:String){
+    private fun alert(title:String,message:String){
         val builder= AlertDialog.Builder(this@RegisterActivity)
         builder.setTitle(title)
         builder.setMessage(message)
