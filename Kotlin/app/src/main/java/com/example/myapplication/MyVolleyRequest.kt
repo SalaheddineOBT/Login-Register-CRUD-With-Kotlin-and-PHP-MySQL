@@ -68,7 +68,6 @@ class MyVolleyRequest {
             }
 
         })
-
     }
 
     fun <T> addToRequestQueue(req:Request<T>){

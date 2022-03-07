@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.view.isInvisible
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,16 +13,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnlogout=findViewById<AppCompatButton>(R.id.btnLogout)
-
+        val btnlogout:AppCompatButton=findViewById(R.id.btnLogout)
         btnlogout.setVisibility(View.VISIBLE);
-
-        val usertxt=findViewById<TextView>(R.id.txtUser)
-        val txttitl=findViewById<TextView>(R.id.txttitl);
+        val usertxt:TextView=findViewById(R.id.txtUser)
+        val txttitl:TextView=findViewById(R.id.txttitl);
 
         val nom=intent.getStringExtra("UserName");
-
-        usertxt.text=nom;
+        if(nom != null) usertxt.text=nom; else startActivity(Intent(this@MainActivity, LoginActivity::class.java))
 
         btnlogout.setOnClickListener(){
             finish();
@@ -31,6 +27,5 @@ class MainActivity : AppCompatActivity() {
             txttitl.text=""
             btnlogout.setVisibility(View.INVISIBLE);
         }
-
     }
 }

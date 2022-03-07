@@ -47,9 +47,7 @@ class RegisterActivity : AppCompatActivity(),IVolley {
                 v1=true
                 showhideconfirm.setBackgroundResource(R.drawable.hide)
                 confirmtxt.transformationMethod= HideReturnsTransformationMethod.getInstance()
-            }
-            else
-            {
+            } else {
                 v1=false
                 showhideconfirm.setBackgroundResource(R.drawable.view)
                 confirmtxt.transformationMethod= PasswordTransformationMethod.getInstance()
@@ -62,9 +60,7 @@ class RegisterActivity : AppCompatActivity(),IVolley {
                 v2=true
                 showhidepss.setBackgroundResource(R.drawable.hide)
                 passwordtxt.transformationMethod= HideReturnsTransformationMethod.getInstance()
-            }
-            else
-            {
+            } else {
                 v2=false
                 showhidepss.setBackgroundResource(R.drawable.view)
                 passwordtxt.transformationMethod= PasswordTransformationMethod.getInstance()
@@ -73,21 +69,16 @@ class RegisterActivity : AppCompatActivity(),IVolley {
 
         //btn Register Actions :
         btnRegister.setOnClickListener(){
-
             val username=usernametxt.text.toString()
             val email=emailtxt.text.toString().trim()
             val password=passwordtxt.text.toString().trim()
             val confirm=confirmtxt.text.toString().trim()
-
             if(password == confirm){
-
                 MyVolleyRequest.getInstance(this@RegisterActivity,this@RegisterActivity)
                     .Register("http://10.0.2.2/API%20PHP/Operations/Register.php",username,email,confirm)
-
             }else{
                 alert("Message Error : ","Confirm Password is Incorrect !")
             }
-
         }
 
     }
@@ -95,7 +86,6 @@ class RegisterActivity : AppCompatActivity(),IVolley {
     override fun onResponse(response: String) {
 
         when(response) {
-
             "422" -> alert("Message Error :", "Pleas Fill all The Required Fields !")
             "401" -> alert("Message Error :", "Invalid Email Format !")
             "403" -> alert("Message Error :", "Your Password Must Be At Least 8 Characters !")
