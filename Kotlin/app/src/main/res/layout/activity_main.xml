@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -13,34 +12,34 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="45dp"
+        android:textSize="45sp"
         android:textColor="@color/primary"
         android:textStyle="bold"
         android:id="@+id/txttitl"
-        android:text="Welcom in Home"></TextView>
+        android:text="@string/welcom"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtUser"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:layout_marginTop="20dp"
-        android:text="User Name"
+        android:text=""
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#9E9F0C3E"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="LogOut ?"
+        android:text="@string/logout"
         android:layout_marginTop="30dp"
         android:background="@drawable/btn_round"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:id="@+id/btnLogout"
-        android:padding="15dp"></androidx.appcompat.widget.AppCompatButton>
+        android:padding="15dp"/>
 
 </LinearLayout>

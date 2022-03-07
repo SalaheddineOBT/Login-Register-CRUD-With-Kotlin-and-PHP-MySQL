@@ -14,18 +14,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val btnlogout:AppCompatButton=findViewById(R.id.btnLogout)
-        btnlogout.setVisibility(View.VISIBLE);
+        btnlogout.setVisibility(View.VISIBLE)
         val usertxt:TextView=findViewById(R.id.txtUser)
-        val txttitl:TextView=findViewById(R.id.txttitl);
+        val txttitl:TextView=findViewById(R.id.txttitl)
 
-        val nom=intent.getStringExtra("UserName");
+        val nom=intent.getStringExtra("UserName")
         if(nom != null) usertxt.text=nom; else startActivity(Intent(this@MainActivity, LoginActivity::class.java))
 
         btnlogout.setOnClickListener(){
-            finish();
+            finish()
             usertxt.text=""
             txttitl.text=""
-            btnlogout.setVisibility(View.INVISIBLE);
+            btnlogout.setVisibility(View.INVISIBLE)
         }
     }
 }

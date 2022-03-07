@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
         android:gravity="center"
@@ -18,42 +17,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Sign Up"
+            android:text="@string/title1"
             android:layout_marginTop="160dp"
             android:textColor="@color/black"
-            android:textSize="40dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Pleas Create Your Account"
-            android:layout_marginTop="10dp"></TextView>
+            android:text="@string/desc2"
+            android:layout_marginTop="10dp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:padding="15dp"
-                android:textSize="20dp"
-                android:hint="Enter Your User Name"
+                android:textSize="20sp"
+                android:autofillHints="emailAddress"
+                android:hint="@string/hintusername"
                 android:maxLines="1"
                 android:layout_marginTop="40dp"
                 android:inputType="text"
                 android:background="@drawable/roud_back5"
-                android:id="@+id/UsernameInput"></EditText>
+                android:id="@+id/UsernameInput"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:padding="15dp"
-            android:textSize="20dp"
-            android:hint="Enter Your Email"
+            android:autofillHints="emailAddress"
+            android:textSize="20sp"
+            android:hint="@string/hintemail"
             android:maxLines="1"
             android:layout_marginTop="20dp"
             android:inputType="textEmailAddress"
             android:background="@drawable/roud_back5"
-            android:id="@+id/EmailInp"></EditText>
+            android:id="@+id/EmailInp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,23 +66,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:hint="Enter Your Password"
-                android:textSize="20dp"
+                android:hint="@string/hintpassword"
+                android:textSize="20sp"
+                android:autofillHints="password"
                 android:padding="15dp"
                 android:layout_marginEnd="40dp"
                 android:maxLines="1"
                 android:id="@+id/PasswordInp"
-                android:inputType="textPassword"
-                ></EditText>
+                android:inputType="textPassword"/>
 
             <ImageView
                 android:id="@+id/showhidepassbtn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
+                android:contentDescription="@string/chaine2"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/view"></ImageView>
+                android:src="@drawable/view" />
 
         </RelativeLayout>
 
@@ -95,14 +97,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:hint="Confirm Your Password"
-                android:textSize="20dp"
+                android:hint="@string/hintconfirm"
+                android:textSize="20sp"
                 android:padding="15dp"
+                android:autofillHints="password"
                 android:layout_marginEnd="40dp"
                 android:maxLines="1"
                 android:id="@+id/ConfirmasswordInput"
-                android:inputType="textPassword"
-                ></EditText>
+                android:inputType="textPassword" />
 
             <ImageView
                 android:id="@+id/showhidepassCbtn"
@@ -110,22 +112,23 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/chaine3"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/view"></ImageView>
+                android:src="@drawable/view" />
 
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="Sign Up"
+            android:text="@string/title1"
             android:textAllCaps="false"
             android:layout_marginTop="40dp"
             android:id="@+id/btnRegister"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:background="@drawable/btn_round"
-            android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+            android:textColor="@color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -139,18 +142,18 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="5dp"
                 android:layout_toStartOf="@+id/txtOr"
-                android:layout_centerVertical="true"></View>
+                android:layout_centerVertical="true" />
 
 
             <TextView
                 android:id="@+id/txtOr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OR"
+                android:text="@string/OR"
                 android:layout_centerInParent="true"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"></TextView>
+                android:textColor="@color/black" />
 
             <View
                 android:layout_width="match_parent"
@@ -159,7 +162,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/txtOr"
-                android:layout_centerVertical="true"></View>
+                android:layout_centerVertical="true" />
 
         </RelativeLayout>
 
@@ -176,7 +179,8 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:adjustViewBounds="true"
-                android:src="@drawable/google"></ImageView>
+                android:contentDescription="@string/title2"
+                android:src="@drawable/google"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -184,10 +188,10 @@
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="30dp"
                 android:gravity="center"
-                android:text="Sign Up With Google ?"
+                android:text="@string/regg"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -203,8 +207,9 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/facebook"
+                android:contentDescription="@string/title2"
                 android:layout_centerVertical="true"
-                android:adjustViewBounds="true"></ImageView>
+                android:adjustViewBounds="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -212,10 +217,10 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:layout_marginEnd="30dp"
-                android:text="Sign In With Facebook ?"
+                android:text="@string/regf"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
         </RelativeLayout>
 
@@ -230,8 +235,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Already have an account ? "/>
+                android:textSize="20sp"
+                android:text="@string/chine3"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -239,8 +244,8 @@
                 android:id="@+id/txtSignin"
                 android:textColor="@color/primary"
                 android:textStyle="bold"
-                android:textSize="20dp"
-                android:text="Sign In"></TextView>
+                android:textSize="20sp"
+                android:text="@string/title2"/>
 
         </LinearLayout>
 
