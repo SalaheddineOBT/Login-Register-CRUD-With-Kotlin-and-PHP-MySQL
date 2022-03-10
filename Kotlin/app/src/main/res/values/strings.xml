@@ -20,4 +20,6 @@
     <string name="OR"> OR </string>
     <string name="welcom">Welcom in Home</string>
     <string name="logout">Logout ?</string>
+    <string name="facebook_app_id">667269648023193</string>
+    <string name="fb_login_protocol_scheme">fb667269648023193</string>
 </resources>

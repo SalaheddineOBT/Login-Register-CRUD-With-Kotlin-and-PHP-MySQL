@@ -137,7 +137,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:id="@+id/btnGoogle"
+            android:id="@+id/sign_in_button"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:background="@drawable/roud_back5">
@@ -163,41 +163,23 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/btnFacebook"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:background="@drawable/roud_back5">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/facebook"
-                android:contentDescription="@string/title2"
-                android:layout_centerVertical="true"
-                android:adjustViewBounds="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:layout_marginEnd="30dp"
-                android:text="@string/logf"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-
-        </RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textSize="17dp"
+            android:paddingLeft="35dp"
+            android:layout_marginBottom="30dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
             android:gravity="center">
 
             <TextView
