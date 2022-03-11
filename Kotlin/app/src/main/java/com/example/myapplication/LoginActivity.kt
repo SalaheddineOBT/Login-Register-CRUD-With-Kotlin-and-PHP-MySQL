@@ -12,7 +12,6 @@ import com.google.android.gms.auth.api.signin.*
 import org.json.JSONObject
 import androidx.core.app.ActivityCompat.*
 import android.content.Intent
-import android.util.Log
 import androidx.core.app.*
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -25,7 +24,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import java.nio.file.attribute.AclEntry
 
 class LoginActivity : AppCompatActivity(){
 
@@ -98,14 +96,15 @@ class LoginActivity : AppCompatActivity(){
             rq.add(jor)
         }
 
+        //SignIn With Gmail :
         googllbtn.setOnClickListener{
             val signInIntent = mGoogleSignInClient.signInIntent
             startActivityForResult(signInIntent, 1000)
         }
 
+        //SignIn With Facebook :
         facebookbtn.setOnClickListener{
             facebookbtn.setReadPermissions(EMAIL)
-
             callbackManager= CallbackManager.Factory.create()
             LoginManager.getInstance().registerCallback(callbackManager,object: FacebookCallback<LoginResult>{
                 override fun onSuccess(result: LoginResult?) {
@@ -115,7 +114,6 @@ class LoginActivity : AppCompatActivity(){
                                 /*Log.d("FACEBOOKDATA",obj.getString("name"))
                                 Log.d("FACEBOOKDATA",obj.getString("email"))*/
                                 //Log.d("FACEBOOKDATA",JSONObject(obj.getString("picture")).getJSONObject("data").getString("url"))
-
                                 val intent=Intent(this@LoginActivity,MainActivity::class.java)
                                 intent.putExtra("UserName",""+obj.getString("name"))
                                 startActivity(intent)
@@ -124,24 +122,16 @@ class LoginActivity : AppCompatActivity(){
                             alert("Error !!!",""+e.message)
                         }
                     }
-
                     val param=Bundle()
                     param.putString("fields","name,email,id,picture.type(large)")
                     graphRequest.parameters=param
                     graphRequest.executeAsync()
-
                 }
 
-                override fun onCancel() {
-
-                }
-
-                override fun onError(error: FacebookException?) {
-
-                }
+                override fun onCancel() {}
+                override fun onError(error: FacebookException?) {}
             })
         }
-
     }
 
     private fun alert(title:String,message:String){
@@ -166,7 +156,6 @@ class LoginActivity : AppCompatActivity(){
                 alert("Message Erreur :",""+e.message)
             }
         }
-
         callbackManager.onActivityResult(requestCode,resultCode,data)
     }
 

@@ -8,18 +8,20 @@
     <string name="hintemail">Enter Your Email</string>
     <string name="hintpassword">Enter Your Password</string>
     <string name="hintconfirm">Confirm Your Password</string>
-    <string name="chain1">Don\'t have an account ? </string>
+    <string name="chain1">Don\'t have an account ? \u0020</string>
     <string name="chaine2">ShowPassword</string>
     <string name="chaine3">ShowConfirmPassword</string>
     <string name="forgetpass">Forgot Password !</string>
-    <string name="chine3">Already have an account ? </string>
+    <string name="chine3">Already have an account ?\u0020</string>
     <string name="logf">Sign In With Facebook ?</string>
     <string name="logg">Sign In With Google ?</string>
     <string name="regf">Sign Up With Facebook ?</string>
     <string name="regg">Sign Up With Google ?</string>
     <string name="OR"> OR </string>
-    <string name="welcom">Welcom in Home</string>
-    <string name="logout">Logout ?</string>
+    <string name="welcom">Welcome In Home</string>
+    <string name="logout">Logout</string>
+    <string name="addnew">Add User</string>
+    <string name="allusers">All Users</string>
     <string name="facebook_app_id">667269648023193</string>
     <string name="fb_login_protocol_scheme">fb667269648023193</string>
 </resources>

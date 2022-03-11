@@ -1,16 +1,12 @@
 package com.example.myapplication
 
-import android.app.blob.BlobStoreManager
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.*
+import androidx.appcompat.app.*
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatButton
+import android.widget.*
 import com.facebook.login.LoginManager
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.signin.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnlogout:AppCompatButton=findViewById(R.id.btnLogout)
+        val btnlogout:RelativeLayout=findViewById(R.id.btnLogout)
         btnlogout.setVisibility(View.VISIBLE)
         val usertxt:TextView=findViewById(R.id.txtUser)
         val txttitl:TextView=findViewById(R.id.txttitl)
@@ -44,6 +40,5 @@ class MainActivity : AppCompatActivity() {
             btnlogout.setVisibility(View.INVISIBLE)
             LoginManager.getInstance().logOut();
         }
-
     }
 }

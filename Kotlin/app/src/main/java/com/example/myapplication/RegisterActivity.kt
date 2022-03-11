@@ -23,7 +23,6 @@ class RegisterActivity : AppCompatActivity() {
         val usernametxt:EditText=findViewById(R.id.UsernameInput)
         val confirmtxt:EditText=findViewById(R.id.ConfirmasswordInput)
         val btngll:RelativeLayout=findViewById(R.id.btnGgll)
-        val btnfb:RelativeLayout=findViewById(R.id.btnFb)
         val showhideconfirm:ImageView=findViewById(R.id.showhidepassCbtn)
         val showhidepss:ImageView=findViewById(R.id.showhidepassbtn)
 
