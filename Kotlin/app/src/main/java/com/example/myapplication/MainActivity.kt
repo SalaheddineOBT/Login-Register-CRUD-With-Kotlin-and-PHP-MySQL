@@ -24,11 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val nom=intent.getStringExtra("UserName")
 
-        val acct = GoogleSignIn.getLastSignedInAccount(this)
-
-        if(nom != null) usertxt.text=nom;
-        else if(acct!=null) usertxt.text=acct.displayName;
-        else startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+        if(nom != null) usertxt.text=nom; else startActivity(Intent(this@MainActivity, LoginActivity::class.java))
 
         btnlogout.setOnClickListener(){
             mGoogleSignInClient.signOut().addOnCompleteListener{

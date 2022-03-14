@@ -10,4 +10,5 @@
     <color name="primary">#1274B6</color>
     <color name="subtitle">#B90B4261</color>
     <color name="secondy">#46546E</color>
+    <color name="subtext">#2E2E42</color>
 </resources>
