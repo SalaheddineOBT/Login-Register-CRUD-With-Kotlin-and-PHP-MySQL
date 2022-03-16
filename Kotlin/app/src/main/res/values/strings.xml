@@ -24,4 +24,6 @@
     <string name="allusers">All Users</string>
     <string name="facebook_app_id">667269648023193</string>
     <string name="fb_login_protocol_scheme">fb667269648023193</string>
+    <string name="titleContent">Title As Methode</string>
+    <string name="titleAll">List Of Users</string>
 </resources>

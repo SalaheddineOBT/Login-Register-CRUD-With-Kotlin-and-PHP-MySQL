@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity(){
             if(checkInternet()){
                 val email:String =emailinput.text.toString()
                 val pass:String=passwordinput.text.toString()
-                val url="http://172.16.1.47/API%20PHP/Operations/Login.php"
+                val url="http://172.16.1.47/API%20PHP/Operations/Authontification/Login.php"
                 val params=HashMap<String,String>()
                 params["email"]=email
                 params["password"]=pass
@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity(){
         //SignIn With Facebook :
         facebookbtn.setOnClickListener{
             if(checkInternet()){
-                //facebookbtn.setReadPermissions("email")
+                facebookbtn.setReadPermissions("email")
                 callbackManager = CallbackManager.Factory.create()
                 LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
                     override fun onSuccess(result: LoginResult?) {

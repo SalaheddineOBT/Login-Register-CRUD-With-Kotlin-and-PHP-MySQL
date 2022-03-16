@@ -65,5 +65,50 @@
             endif;
             return false;
         }
+
+        public function UpdateUser($id,$username,$email){
+            $sql='UPDATE users SET UserName="'.$username.'",Email="'.$email.'" WHERE ID='.$id;
+            $stmt=$this->con->prepare($sql);
+            if($stmt->execute()):
+                return true;
+            endif;
+            echo ''.$stmt->error;
+            return false;
+        }
+
+        public function DeleteUser($id){
+            $sql='DELETE FROM users WHERE ID='.$id;
+            $stmt=$this->con->prepare($sql);
+            if($stmt->execute()):
+                return true;
+            endif;
+            echo ''.$stmt->error;
+            return false;
+        }
+
+        public function SelectedByID($id){
+            $sql='SELECT UserName,Email FROM users WHERE ID='.$id.' LIMIT 1';
+            $stmt=$this->con->prepare($sql);
+            $stmt->execute();
+            if($stmt->rowCount()):
+                $row=$stmt->fetch(PDO::FETCH_ASSOC);
+                return $row;
+            endif;
+
+            echo ''.$stmt->error;
+            return false;
+        }
+
+        public function SelecteAll(){
+            $sql='SELECT UserName,Email FROM users';
+            $stmt=$this->con->prepare($sql);
+            $stmt->execute();
+            if($stmt->rowCount()):
+                return $stmt;
+            endif;
+            echo ''.$stmt->error;
+            return false;
+        }
+
     }
 ?>

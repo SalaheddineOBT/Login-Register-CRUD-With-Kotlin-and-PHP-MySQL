@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usermanager">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titletext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:text="@string/titleContent"
+            android:textColor="@color/secondy"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/UsernamelIn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@id/titletext"
+            android:layout_marginTop="20dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/roud_back5"
+            android:hint="@string/hintusername"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:padding="15dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/EmailIn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@id/UsernamelIn"
+            android:layout_marginTop="20dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/roud_back5"
+            android:hint="@string/hintemail"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:padding="15dp"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/EmailIn"
+            android:id="@+id/pss"
+            android:background="@drawable/roud_back5">
+
+            <EditText
+                android:id="@+id/PasswordIn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="40dp"
+                android:autofillHints="password"
+                android:background="@android:color/transparent"
+                android:hint="@string/hintpassword"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/showhidepassbt"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/chaine2"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/view" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@id/pss"
+            android:id="@+id/cpss"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/roud_back5">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="@string/hintconfirm"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:autofillHints="password"
+                android:layout_marginEnd="40dp"
+                android:maxLines="1"
+                android:id="@+id/ConfirmasswordInp"
+                android:inputType="textPassword" />
+
+            <ImageView
+                android:id="@+id/showhidepassCbt"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/chaine3"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/view" />
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnuser"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_below="@id/cpss"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/btn_round"
+            android:text="@string/titleContent"
+            android:paddingEnd="50dp"
+            android:paddingStart="20dp"
+            android:textAllCaps="false"
+            android:drawableStart="@drawable/addicon"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</ScrollView>

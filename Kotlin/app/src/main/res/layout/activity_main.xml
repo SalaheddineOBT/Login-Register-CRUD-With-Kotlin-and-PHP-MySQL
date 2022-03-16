@@ -55,9 +55,9 @@
         <RelativeLayout
             android:id="@+id/btnallUsers"
             android:layout_width="109dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/bordersolid"
-            android:padding="10dp"
-            android:layout_height="wrap_content">
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/img1"
@@ -82,10 +82,10 @@
         <RelativeLayout
             android:id="@+id/btnNewUser"
             android:layout_width="109dp"
-            android:background="@drawable/bordersolid"
-            android:padding="10dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp">
+            android:layout_marginStart="25dp"
+            android:background="@drawable/bordersolid"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/img2"
@@ -101,8 +101,8 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="3dp"
                 android:text="@string/addnew"
-                android:textSize="20sp"
                 android:textColor="@color/subtext"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -110,10 +110,10 @@
         <RelativeLayout
             android:id="@+id/btnLogout"
             android:layout_width="109dp"
-            android:background="@drawable/bordersolid"
-            android:padding="10dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp">
+            android:layout_marginStart="25dp"
+            android:background="@drawable/bordersolid"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/img3"
@@ -129,8 +129,8 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="3dp"
                 android:gravity="center"
-                android:textColor="@color/subtext"
                 android:text="@string/logout"
+                android:textColor="@color/subtext"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

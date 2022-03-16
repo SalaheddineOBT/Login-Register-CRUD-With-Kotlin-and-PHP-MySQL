@@ -10,37 +10,37 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
-
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Listofusers"
+            android:exported="true" />
+        <activity
+            android:name=".usermanager"
+            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:exported="true"
-            android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" />
 
-        </activity>
-
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-
-
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

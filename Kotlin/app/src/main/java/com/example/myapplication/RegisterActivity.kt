@@ -69,7 +69,7 @@ class RegisterActivity : AppCompatActivity() {
             val confirm=confirmtxt.text.toString().trim()
             if(password == confirm){
 
-                val url:String="http://172.16.1.47/API%20PHP/Operations/Register.php"
+                val url:String="http://172.16.1.47/API%20PHP/Operations/Authontification/Register.php"
 
                 val params=HashMap<String,String>()
                 params["username"]=username

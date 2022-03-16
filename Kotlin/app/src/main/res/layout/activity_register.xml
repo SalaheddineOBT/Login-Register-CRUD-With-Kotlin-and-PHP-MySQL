@@ -35,7 +35,7 @@
                 android:layout_height="55dp"
                 android:padding="15dp"
                 android:textSize="20sp"
-                android:autofillHints="emailAddress"
+                android:autofillHints="name"
                 android:hint="@string/hintusername"
                 android:maxLines="1"
                 android:layout_marginTop="40dp"
