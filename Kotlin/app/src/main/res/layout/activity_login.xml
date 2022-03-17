@@ -51,17 +51,17 @@
             android:background="@drawable/roud_back5">
 
             <EditText
+                android:id="@+id/PasswordInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="40dp"
+                android:autofillHints="password"
                 android:background="@android:color/transparent"
                 android:hint="@string/hintpassword"
-                android:textSize="20sp"
-                android:autofillHints="password"
-                android:padding="15dp"
-                android:layout_marginEnd="40dp"
+                android:inputType="textPassword"
                 android:maxLines="1"
-                android:id="@+id/PasswordInput"
-                android:inputType="textPassword"/>
+                android:padding="15dp"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/showhidepasswordbtn"

@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="30dp"
-    android:paddingRight="20dp"
-    android:paddingLeft="20dp"
     android:orientation="vertical"
     tools:context=".Listofusers">
 
@@ -13,15 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/titleAll"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold"
+        android:layout_marginTop="25dp"
         android:gravity="center" />
 
     <ListView
+        android:id="@+id/lstUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lstUsers"/>
-
-
+        android:clickable="true"
+        tools:listitem="@layout/listingusers"/>
 
 </LinearLayout>
