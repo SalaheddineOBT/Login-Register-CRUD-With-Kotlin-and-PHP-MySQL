@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".updateUser"
+            android:exported="true" />
+        <activity
             android:name=".Listofusers"
             android:exported="true" />
         <activity

@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -44,7 +45,10 @@ class Listofusers : AppCompatActivity() {
                             //alert("hello",lst.get(i).username)
                             lstview.adapter = MyAdapter(this,R.layout.listingusers, lst as ArrayList<User>)
                             lstview.setOnItemClickListener { parent:AdapterView<*>, view: View, position:Int, id:Long ->
-                                alert("title","Position : "+position+" ID : "+id+" userId : "+lst.get(position).id)
+                                //alert("title","Position : "+position+" ID : "+id+" userId : "+lst.get(position).id)
+                                var intent=Intent(this,updateUser::class.java)
+                                intent.putExtra("id",lst.get(position).id)
+                                startActivity(intent)
                             }
                             
                             //alert("Hello",""+dt.getJSONObject(i).getString("UserName"))
