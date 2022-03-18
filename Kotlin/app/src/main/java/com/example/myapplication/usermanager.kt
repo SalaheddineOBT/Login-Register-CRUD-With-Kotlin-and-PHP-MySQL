@@ -19,8 +19,9 @@ class usermanager : AppCompatActivity() {
         val ConfirmasswordInp:EditText=findViewById(R.id.ConfirmasswordInp)
         val showp:ImageView=findViewById(R.id.showhidepassbt)
         val showc:ImageView=findViewById(R.id.showhidepassCbt)
+        val back:ImageView=findViewById(R.id.back)
         var methd:String=intent.getStringExtra("Methode").toString()
-
+        back.setOnClickListener{ finish() }
         titletext.text = methd
         btnuser.text = methd
 
@@ -63,14 +64,7 @@ class usermanager : AppCompatActivity() {
         }
 
         btnuser.setOnClickListener{
-            when(methd){
-                "Add User" -> {
 
-                }
-                "Update User" -> {
-
-                }
-            }
         }
 
 

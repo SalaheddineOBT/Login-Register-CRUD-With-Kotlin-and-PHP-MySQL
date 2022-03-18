@@ -6,20 +6,41 @@
     android:orientation="vertical"
     tools:context=".Listofusers">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/titleAll"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        android:gravity="center" />
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/pack"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/titletexts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="-57dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="25dp"
+            android:layout_toEndOf="@id/pack"
+            android:gravity="center"
+            android:text="@string/titleAll"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/lstUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        tools:listitem="@layout/listingusers"/>
+        android:focusable="true"
+        tools:listitem="@layout/listingusers" />
 
 </LinearLayout>

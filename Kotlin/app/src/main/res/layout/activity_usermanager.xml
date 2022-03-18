@@ -10,8 +10,14 @@
         android:gravity="center"
         android:paddingRight="25dp"
         android:paddingLeft="25dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back"
+            android:id="@+id/back"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/titletext"
