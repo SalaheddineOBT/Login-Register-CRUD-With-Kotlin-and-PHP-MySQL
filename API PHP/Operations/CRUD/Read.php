@@ -23,23 +23,29 @@
         try{
             $select=$data->select;
         
-            switch($select):
+            if($select == "ById" && isset($_REQUEST["id"]) && !empty($_REQUEST["id"])):
+                if($db->SelectedByID($_REQUEST["id"])):
+                    echo json_encode(["success" => 1, "User" =>$db->SelectedByID($_REQUEST["id"])]);
+                else:
+                    $db->Message(0,401,"No Data With This Id !");
+                endif;
 
-                case "ById":
-                    echo json_encode(["success" => 1, "User" =>$db->SelectedByID(14)]);
+            elseif($select == "All"):
+                if($stmt=$db->SelecteAll()):
+                    $row = $stmt->fetchall(PDO::FETCH_ASSOC);
+                    echo json_encode(["success" => 1, "Users" => $row]);
+                
+                else:
+                    $db->Message(0,401,"The DataBase Is Empty !");
 
-                case "All":
+                endif;
 
-                    if($stmt=$db->SelecteAll()):
-                        $row = $stmt->fetchall(PDO::FETCH_ASSOC);
-                        echo json_encode(["success" => 1, "Users" => $row]);
+            elseif($select == "ById" && !isset($_REQUEST["id"]) || empty($_REQUEST["id"])):
+                $db->Message(0,422,"The ID is Required !");
 
-                    endif;
-
-            endswitch;
+            endif;
             
-        }catch(PDOEception $e){
-            echo $e->getMessage(); 
+        }catch(PDOEception $e){ 
             $db->Message(0,401,"".$e->getMessage());
             
         }

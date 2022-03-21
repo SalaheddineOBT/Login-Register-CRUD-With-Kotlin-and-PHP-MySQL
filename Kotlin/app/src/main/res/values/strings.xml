@@ -26,5 +26,7 @@
     <string name="fb_login_protocol_scheme">fb667269648023193</string>
     <string name="titleContent">Title As Methode</string>
     <string name="titleAll">List Of Users</string>
-    <string name=""
+    <string name="email">Email :</string>
+    <string name="username">User Name :</string>
+    <string name="save">Save Changes</string>
 </resources>

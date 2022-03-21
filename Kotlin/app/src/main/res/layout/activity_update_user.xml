@@ -3,20 +3,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingStart="30dp"
+    android:gravity="center"
     tools:context=".updateUser">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/back" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/personna"
+        android:layout_gravity="center"
+        android:id="@+id/pictureofuser"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/primary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:text="@string/username"
+            android:textColor="@color/primary" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editeUsername"
+            android:textSize="20sp"
+            android:inputType="text"
+            android:autofillHints="name"
+            android:padding="10dp"
+            android:background="@drawable/borderinput"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textSize="23sp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:text="@string/email"
+            android:gravity="center"
+            android:textColor="@color/primary"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editeEmail"
+            android:autofillHints="emailAddress"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/borderinput"
+            android:layout_gravity="start" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text=""
-        android:textColor="@color/primary" />
+        android:padding="10dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:orientation="horizontal" >
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/save"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:background="@drawable/btn_round"
+            android:drawableEnd="@drawable/check"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:id="@+id/btnsave"
+            android:textSize="23sp" />
 
-
-
+    </LinearLayout>
 
 </LinearLayout>

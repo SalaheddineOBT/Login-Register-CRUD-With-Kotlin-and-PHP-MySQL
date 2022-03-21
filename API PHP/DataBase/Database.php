@@ -95,18 +95,17 @@
                 return $row;
             endif;
 
-            echo ''.$stmt->error;
             return false;
         }
 
         public function SelecteAll(){
-            $sql='SELECT UserName,Email FROM users';
+            $sql='SELECT ID,UserName,Email FROM users';
             $stmt=$this->con->prepare($sql);
             $stmt->execute();
             if($stmt->rowCount()):
                 return $stmt;
             endif;
-            echo ''.$stmt->error;
+            
             return false;
         }
 

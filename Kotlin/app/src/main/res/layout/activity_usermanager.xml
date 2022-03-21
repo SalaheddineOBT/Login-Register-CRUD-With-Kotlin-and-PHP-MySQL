@@ -13,11 +13,11 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/back"
             android:layout_width="80dp"
             android:layout_height="50dp"
-            android:src="@drawable/back"
-            android:id="@+id/back"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/back" />
 
         <TextView
             android:id="@+id/titletext"

@@ -27,8 +27,11 @@
         $id=$data->id;
         $username=$data->username;
         $email=trim($data->email);
+
         if(!is_numeric($data->id)):
             $db->Message(0,422,"ID Must be Integer !");
+        elseif(!$db->SelectedByID($id)):
+            $db->Message(0,422,"No Data With This User Id !!");
         elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)):
             $db->Message(0,422,"Invalid Email Format !");
         elseif(strlen($username) < 3):
