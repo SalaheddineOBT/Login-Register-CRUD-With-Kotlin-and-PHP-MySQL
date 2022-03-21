@@ -23,7 +23,6 @@ class updateUser : AppCompatActivity() {
     lateinit var imageuser:ImageView
     lateinit var username:EditText
     lateinit var email:EditText
-    lateinit var lst:ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +32,6 @@ class updateUser : AppCompatActivity() {
         imageuser=findViewById(R.id.pictureofuser)
         username=findViewById(R.id.editeUsername)
         email=findViewById(R.id.editeEmail)
-        lst=findViewById(R.id.lstUsers)
 
         val back:ImageView=findViewById(R.id.back)
         back.setOnClickListener{ finish() }
@@ -86,7 +84,7 @@ class updateUser : AppCompatActivity() {
                     builder.setMessage(res.getString("message"))
                     builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int ->
                         finish()
-
+                        Listofusers::afficher
                     }).create()
                     builder.show()
                 } else { alert("Message d'Erreur !",res.getString("message")) }

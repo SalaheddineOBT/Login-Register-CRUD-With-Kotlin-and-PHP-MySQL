@@ -12,10 +12,9 @@
         android:id="@+id/back"
         android:layout_width="80dp"
         android:layout_height="50dp"
-        android:layout_marginTop="-20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="5dp"
         android:layout_gravity="start"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/back" />
 
     <de.hdodenhof.circleimageview.CircleImageView
