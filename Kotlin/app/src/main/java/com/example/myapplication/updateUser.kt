@@ -6,9 +6,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ListView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.Request
@@ -84,7 +82,6 @@ class updateUser : AppCompatActivity() {
                     builder.setMessage(res.getString("message"))
                     builder.setPositiveButton("Ok",{ dialogInterface: DialogInterface, i: Int ->
                         finish()
-                        Listofusers::afficher
                     }).create()
                     builder.show()
                 } else { alert("Message d'Erreur !",res.getString("message")) }

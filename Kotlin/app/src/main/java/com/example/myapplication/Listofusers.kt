@@ -28,15 +28,14 @@ class Listofusers : AppCompatActivity() {
         lstview=findViewById(R.id.lstUsers)
         val back:ImageView=findViewById(R.id.pack)
 
-        back.setOnClickListener{
-            lstview.adapter=null }
+        back.setOnClickListener{ finish() }
 
         if(checkInternet())  afficher()
         else alert("Erreur :","No Network Connected !")
 
     }
 
-    public final fun afficher(){
+    fun afficher(){
         val url="http://172.16.1.47/API%20PHP/Operations/CRUD/Read.php"
         val params=HashMap<String,String>()
         params["select"]="All"
@@ -51,12 +50,12 @@ class Listofusers : AppCompatActivity() {
                         lst.add(User(dt.getJSONObject(i).getInt("ID"),dt.getJSONObject(i).getString("UserName"),dt.getJSONObject(i).getString("Email")))
                         //alert("hello",lst.get(i).username)
                         lstview.adapter = MyAdapter(this,R.layout.listingusers, lst as ArrayList<User>)
-                        lstview.setOnItemClickListener { parent:AdapterView<*>, view: View, position:Int, id:Long ->
+                        /*lstview.setOnItemClickListener { parent:AdapterView<*>, view: View, position:Int, id:Long ->
                             //alert("title","Position : "+position+" ID : "+id+" userId : "+lst.get(position).id)
                             var intent=Intent(this,updateUser::class.java)
                             intent.putExtra("id",lst.get(position).id)
                             startActivity(intent)
-                        }
+                        }*/
                         //alert("Hello",""+dt.getJSONObject(i).getString("UserName"))
                     }
                 } else { alert("Message d'Erreur !",res.getString("message")) }

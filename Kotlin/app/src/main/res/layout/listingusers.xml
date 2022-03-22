@@ -5,52 +5,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
    <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="120dp"
        android:layout_marginVertical="10dp"
        android:padding="8dp"
        android:orientation="horizontal">
 
-       <de.hdodenhof.circleimageview.CircleImageView
-           android:layout_width="100dp"
-           android:layout_height="100dp"
-           android:layout_marginStart="20dp"
-           android:id="@+id/pictureUser"
-           app:civ_border_width="3dp"
-           app:civ_border_color="@color/primary"
-           android:src="@drawable/personna" />
-
        <LinearLayout
-           android:layout_width="190dp"
-           android:layout_height="wrap_content"
-           android:layout_marginStart="17dp"
-           android:layout_marginTop="20dp"
-           android:orientation="vertical">
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:id="@+id/inte"
+           android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textUserName"
-                android:text="User Name Here"
-                android:textSize="20sp"
-                android:textColor="@color/primary"
-                android:textStyle="bold" />
+           <de.hdodenhof.circleimageview.CircleImageView
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               android:layout_marginStart="20dp"
+               android:id="@+id/pictureUser"
+               app:civ_border_width="3dp"
+               app:civ_border_color="@color/primary"
+               android:src="@drawable/personna" />
 
-           <TextView
-               android:id="@+id/textEmail"
-               android:layout_width="wrap_content"
+           <LinearLayout
+               android:layout_width="190dp"
                android:layout_height="wrap_content"
-               android:layout_marginTop="10dp"
-               android:text="User Email Here"
-               android:textColor="@color/black"
-               android:textStyle="bold"
-               android:textSize="15sp" />
+               android:layout_marginStart="17dp"
+               android:layout_marginTop="20dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/textUserName"
+                   android:text="User Name Here"
+                   android:textSize="20sp"
+                   android:textColor="@color/primary"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:id="@+id/textEmail"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="10dp"
+                   android:text="User Email Here"
+                   android:textColor="@color/black"
+                   android:textStyle="bold"
+                   android:textSize="15sp" />
+
+           </LinearLayout>
 
        </LinearLayout>
 
-       <ImageView
+       <ImageButton
            android:layout_width="50dp"
            android:layout_marginTop="25dp"
            android:layout_height="50dp"
