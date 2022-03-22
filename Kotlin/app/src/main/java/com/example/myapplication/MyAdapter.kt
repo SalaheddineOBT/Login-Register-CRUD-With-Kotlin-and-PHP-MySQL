@@ -56,12 +56,10 @@ class MyAdapter (var ctx:Context, var ressource:Int, var items:ArrayList<User>) 
     }
 
     fun deleteUser(id:Int){
-        val url="http://172.16.1.47/API%20PHP/Operations/CRUD/Delete.php"
-        val params=HashMap<String,String>()
-        params["id"]= ""+id
-        val jO= JSONObject(params as Map<*, *>)
+        val url="http://172.16.1.47/API%20PHP/Operations/CRUD/Delete.php?id="+id
+
         val rq: RequestQueue = Volley.newRequestQueue(ctx)
-        val jor= JsonObjectRequest(Request.Method.DELETE,url,jO, Response.Listener { res->
+        val jor= JsonObjectRequest(Request.Method.DELETE,url,null, Response.Listener { res->
             try {
                 if(res.getString("success").equals("1")){
                     alert("Message D'information :",res.getString("message"))

@@ -15,12 +15,12 @@
 
     if($_SERVER["REQUEST_METHOD"]!="DELETE"):
         $db->Message(0,404,"Page Not Found !");
-    elseif( !isset($data->id) || empty($data->id) ):
+    elseif( !isset($_REQUEST['id']) || empty($_REQUEST['id']) ):
         $db->Message(0,422,"ID is Required !!");
     else:
-        $username=$data->id;
+        $id=$_REQUEST['id'];
 
-        if(!is_numeric($data->id)):
+        if(!is_numeric($id)):
             $db->Message(0,422,"ID Must be Integer !");
         else:
             try{
