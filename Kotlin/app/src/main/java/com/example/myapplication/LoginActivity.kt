@@ -34,7 +34,9 @@ class LoginActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val btnLogin:AppCompatButton=findViewById(R.id.btnLogin)
+        //val btnLogin:AppCompatButton=findViewById(R.id.btnLogin)
+        val btnLogin=findViewById<AppCompatButton>(R.id.btnLogin)
+
         val emailinput:EditText=findViewById(R.id.EmailInput)
         val passwordinput:EditText=findViewById(R.id.PasswordInput)
         val showHide:ImageView=findViewById(R.id.showhidepasswordbtn)
