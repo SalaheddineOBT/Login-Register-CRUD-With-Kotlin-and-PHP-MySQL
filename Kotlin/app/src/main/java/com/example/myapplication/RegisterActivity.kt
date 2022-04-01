@@ -103,9 +103,7 @@ class RegisterActivity : AppCompatActivity() {
                 },Response.ErrorListener { err->
                     alert("Message d'Erreur !",""+err.message)
                 })
-
                 rq.add(jor)
-
             }else{
                 alert("Message d'Erreur !","Confirm Password is Incorrect !")
             }
